@@ -7,7 +7,7 @@ authors = ["Flavia Giammarino"]
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 pandas = ">=1.5.2"
-numpy = ">=1.23.5"
+numpy = ">=1.23.0"
 tensorflow-macos = { version = "^2.10.0", markers = "platform_machine == 'arm64'" }
 tensorflow = { version = "^2.10.0", markers = "platform_machine != 'arm64'" }
 plotly = ">=5.11.0"
