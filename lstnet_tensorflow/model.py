@@ -70,7 +70,9 @@ class LSTNet():
 
         # Normalize the targets.
         y_min, y_max = np.min(y, axis=0), np.max(y, axis=0)
-        y = (y - y_min) / (y_max - y_min)
+        # avoid division by zero by setting denominator to 1 if y_max == y_min
+        den = np.where(y_max == y_min, 1, y_max - y_min)
+        y = (y - y_min) / den
         self.y_min = y_min
         self.y_max = y_max
 
