@@ -163,7 +163,10 @@ class LSTNet():
         '''
 
         # Normalize the targets.
-        y = (y - self.y_min) / (self.y_max - self.y_min)
+        # y = (y - self.y_min) / (self.y_max - self.y_min)
+        # avoid division by zero by setting denominator to 1 if y_max == y_min
+        den = np.where(self.y_max == self.y_min, 1, self.y_max - self.y_min)
+        y = (y - self.y_min) / den
         
         # Generate the multi-step forecasts.
         x_pred = y[- self.n_lookback - 1: - 1, :].reshape(1, self.n_lookback, self.n_targets)   # Last observed input sequence.
